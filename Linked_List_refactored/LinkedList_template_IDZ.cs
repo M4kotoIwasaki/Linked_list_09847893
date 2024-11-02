@@ -27,7 +27,6 @@
     public class LinkedList
     {
         private Node head;
-        private int size;
 
         public LinkedList()
         {
@@ -52,7 +51,7 @@
         }
 
 
-        public int AddEnd(int data)
+        public void AddEnd(int data)
         {
             Node newNode = new Node(data, null);
 
@@ -71,9 +70,6 @@
 
                 current.Next = newNode;
             }
-
-            this.size++;
-            return this.size;
         }
 
         public bool Contains(int data)
