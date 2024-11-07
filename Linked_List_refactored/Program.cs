@@ -6,7 +6,7 @@ public class Program
     static LinkedList LinkedList_1;
     static LinkedList LinkedList_2;
 
-    public static void Menu()
+    public static void Menu() //A console-type graphics menu
     {
         while (true)
         {
@@ -101,7 +101,7 @@ public class Program
     private static void InitializeList(int listChoice) //Initialization of a list
     {
         //Before initializing a new list we should check if we already have one. If we have, then we should delete
-        //it to avoid garbage collecting in memory. Then we create a new list. If the list is already existed, then
+        //it to avoid garbage collecting in memory. Then we create a new list. If the list is already exist, then
         //just clear it. There's no need to create a new one.
 
         if (listChoice == 1)
@@ -217,7 +217,7 @@ public class Program
                     LinkedList_2.Clear();
                 } 
                 break;
-            case 3: //here is used 2 if statements because if we will use only one expression with &&, we can't delete all garbage
+            case 3: //here is used 2 "if" statements because if we will use only one expression with "||", we can't delete all garbage
                 if (LinkedList_1 != null)
                 {
                     LinkedList_1.Clear();
@@ -580,28 +580,30 @@ public class Program
 
     public static void DifferenceFunc() //difference operation with two sets
     {
-        if (LinkedList_1 == null && LinkedList_2 == null) //check for initialization
+        if ((LinkedList_1 == null) || (LinkedList_2 == null)) //check for initialization
         {
             ShowError("Какой-то из списков не инициализирован!");
             Console.WriteLine("-----------------------------------------\n");
-            return;
-        }
-        LinkedList finalLinkedList = LinkedList_1.Difference(LinkedList_2); //result list (set) initialization
-
-        if (finalLinkedList.Empty)
-        {
-            SuccessMessage();
-            Console.WriteLine("Результат: пустое множество.\n");
         }
         else
         {
-            SuccessMessage();
-            Console.WriteLine("\nРезультат:\n");
-            finalLinkedList.Print();
-            Console.WriteLine();
-        }
+            LinkedList finalLinkedList = LinkedList_1.Difference(LinkedList_2); //result list (set) initialization
 
-        finalLinkedList.Clear(); //deleting garbage
+            if (finalLinkedList.Empty)
+            {
+                SuccessMessage();
+                Console.WriteLine("Результат: пустое множество.\n");
+            }
+            else
+            {
+                SuccessMessage();
+                Console.WriteLine("\nРезультат:\n");
+                finalLinkedList.Print();
+                Console.WriteLine();
+            }
+            
+            finalLinkedList.Clear(); //deleting garbage
+        }
     }
 
     public static void Main(string[] args)
