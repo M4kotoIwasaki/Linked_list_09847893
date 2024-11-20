@@ -19,7 +19,7 @@ public class Program
             Console.WriteLine("6. Поиск заданного элемента по значению");
             Console.WriteLine("7. Печать");
             Console.WriteLine("8. Операция работы с двумя списками (разность)");
-            Console.WriteLine("9. Доп. операция");
+            Console.WriteLine("9. Доп. операция (делители числа)");
             Console.WriteLine("\n10. Выход из программы");
             Console.Write("\nВаш выбор: ");
 
@@ -60,6 +60,9 @@ public class Program
                     break;
                 case 8:
                     DifferenceFunc();
+                    break;
+                case 9:
+                    DividersFunc();
                     break;
                 case 10:
                     Console.Clear();
@@ -606,6 +609,45 @@ public class Program
         }
     }
 
+    public static void DividersFunc()
+    {
+        int listChoice = 0;
+        bool validInput = false;
+        
+        validInput = false;
+        while (!validInput) //check for valid number of a list
+        {
+            Console.Write(
+                "Выберете список для работы (1, 2) или любой отличный символ для возврата в главное меню: ");
+            var tempListChoice = Console.ReadLine();
+
+            if (!int.TryParse(tempListChoice, out listChoice) || (listChoice != 1 && listChoice != 2))
+            {
+                Console.Clear();
+                return;
+            }
+            else
+            {
+                validInput = true;
+            }
+        }
+        
+        LinkedList selectedList = (listChoice == 1) ? LinkedList_1 : LinkedList_2;
+
+        if (selectedList != null)
+        {
+            LinkedList finalLinkedList = selectedList.Dividers(selectedList);
+            Console.WriteLine("\nРезультат:\n");
+            finalLinkedList.Print();
+            Console.WriteLine();
+            finalLinkedList.Clear(); //deleting garbage
+        }
+        else //if our list isn't initialized, then we can do nothing with it
+        {
+            ShowError("Список не инициализирован!");
+            Console.WriteLine("----------------------------\n");
+        }
+    }
     public static void Main(string[] args)
         {
             Menu();

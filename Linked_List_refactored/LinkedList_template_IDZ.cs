@@ -221,5 +221,54 @@
             }
             return result;
         }
+        
+        public LinkedList Dividers(LinkedList selectedList)
+        {
+            LinkedList result = new LinkedList();
+            int value;
+            Node current = this.head;
+
+            //value = current.Data;
+            while (current != null)
+            {
+                value = current.Data;
+                for (int i = 1; i <= value ; i++)
+                {
+                    
+                    if (value % i == 0)
+                    {
+                        result.AddEnd(i);
+                    }
+                }
+                current = current.Next;
+            }
+            return result;
+        }
+        /*public LinkedList Dividers(LinkedList selectedList)
+        {
+            LinkedList result = new LinkedList(); 
+            Node current = this.head;
+
+            while (current != null)
+            {
+                int counter = 2;
+                
+                for (int i = 2; i <= current.Data / 2; i++)
+                {
+                    if (current.Data % i == 0)
+                    {
+                        counter++;
+                    }
+                    
+                    if (counter >= 4)
+                    {
+                        result.AddEnd(current.Data);
+                        break;
+                    }
+                }
+                current = current.Next;
+            }
+            return result;
+        }*/
     }
 }
